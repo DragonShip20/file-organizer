@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import os, shutil
+=======
+from PyQt6.QtWidgets import (QApplication, QWidget, QLineEdit, QPushButton, QGridLayout)
+import os, shutil, sys
+>>>>>>> 76a86a9 (Added simple GUI system)
 
 GROUPS = {
     "Images": {".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp", ".tif", ".tiff"},
@@ -30,6 +35,31 @@ def sortfiles(folder: str) -> None:
         print(f"{name} -> {os.path.relpath(path, folder)}")
         shutil.copy2(src, path)
 
+<<<<<<< HEAD
 if __name__ == "__main__":
     filepath = input("Input folder path: ")
     sortfiles(filepath)
+=======
+class MainWindow(QWidget):
+    def __init__(self: QWidget) -> None:
+        super().__init__()
+
+        self.layout: QGridLayout = QGridLayout(self)
+
+        self.entry_1 = QLineEdit(self)
+        
+        self.btn_1 = QPushButton(parent=self, text="Sort files")
+        self.btn_1.clicked.connect(lambda: sortfiles(self.entry_1.text()))
+
+        self.layout.addWidget(self.btn_1)
+        self.layout.addWidget(self.entry_1)
+
+        self.show()
+
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+
+    root = MainWindow()
+    
+    app.exec()
+>>>>>>> 76a86a9 (Added simple GUI system)
